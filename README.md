@@ -1,5 +1,7 @@
 ## Core Java
 My daily log to track my productivity in learning Java / Spring / SQL / Hibernate
+![java-dev-logo](https://d1vwxdpzbgdqj.cloudfront.net/assets/career-school/tech-school/java-full-stack-engineer/mob-tools-7625df9621cfeb1319c40d55c519ec6fc2e18aa29e2cb0a9a17f5f7b9ebd5d57.png)
+
 
 ### Unit 1 9/19/2022 - 9/23/2022
 
