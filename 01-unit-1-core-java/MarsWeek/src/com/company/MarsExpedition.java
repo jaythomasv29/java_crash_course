@@ -3,6 +3,7 @@ package com.company;
 import org.w3c.dom.ls.LSOutput;
 
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MarsExpedition {
@@ -48,7 +49,7 @@ public class MarsExpedition {
             System.out.println("Nice choice, you will be bringing a " +  weapon + " with you.");
             System.out.println("You have the choice of 3 vehicles \n A: Mars Rover \n B: A Chevy Silverado \n C: A Honda Civic");
             String vehicleChoice = input.nextLine();
-            switch(vehicleChoice) {
+            switch(vehicleChoice.toUpperCase()) {
                 case "A":
                     vehicle = "Mars Rover";
                     break;
