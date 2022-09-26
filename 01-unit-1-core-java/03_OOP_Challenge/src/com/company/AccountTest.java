@@ -11,9 +11,9 @@ class AccountTest {
     Account[] accounts;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         accounts = new Account[] {
-                new Checking("James Vongampai", "Jantira Vongampai", 20000.00),
+                new Checking("a23f49f9", "Jantira Vongampai", 20000.00),
                 new Savings("z23f49f9", "James Vongampai", 20000.00),
                 new Loan("l9fg48h8", "James Vongampai", 53002.29)
         };
