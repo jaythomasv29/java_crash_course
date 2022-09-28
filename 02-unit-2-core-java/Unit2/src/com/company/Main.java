@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,12 +9,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        int num = 22;
+//        String s = Integer.toString(num);
+        double dn = (double)num;
+        System.out.println(dn);
 	// write your code here
         Person bob = new Person("Bob", 28);
         Person alphonse = new Person("Alphonse", 30);
         Person lily = new Person("Lily", 25);
         Person marcus = new Person("Marcus", 22);
         Person jess = new Person("Jess", 20);
+        Person defaultPerson = new Person();
+        System.out.println(defaultPerson);
         Person[] persons = new Person[] { bob, alphonse, lily, marcus, jess };
 
         HashMap<Integer, Person> people = new HashMap<>();
@@ -84,6 +91,7 @@ public class Main {
             }
 
         }
+
 
         Order o1 = new Order(cupcakeMenu, drinkMenu);
 

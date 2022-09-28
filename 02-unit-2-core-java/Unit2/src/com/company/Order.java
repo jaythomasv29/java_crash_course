@@ -1,5 +1,9 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -47,26 +51,77 @@ public class Order {
                     } else if (orderChoice > 3 && orderChoice <= 6){
                         // ordering from drinkMenu
                         order.add(drinkMenu.get(orderChoice - 4));
-                    } else {
+                    }  else {
                         System.out.println("Sorry we don't seem to have that on the menu");
                     }
                     System.out.println("Would you like to continue ordering? (Y/N)");
                     if(scanner.nextLine().equalsIgnoreCase("N")) {
                         isOrdering = false;
                     }
-                    System.out.println("Your current order: \n");
-                    System.out.println(order);
-
                 } catch (InputMismatchException e) {
                     System.out.println("Error selecting item, try again...");
                 }
-
-
-
             }
+            // Generate receipt
+            System.out.println(order);
+            // print out Local Date
+            System.out.println(order.get(0));
+            // print out Local Time
+            System.out.println(order.get(1));
+            double orderSubtotal = 0.0;
+            System.out.println("**********************************************************************");
+            for(int i = 2; i < order.size(); i++) {
+                String itemType = order.get(i).getClass().getSuperclass().getSimpleName();
+                Object orderItem = order.get(i);
+                if(itemType.equals("Cupcake")) {
+                    ((Cupcake)orderItem).type();
+                    orderSubtotal += ((Cupcake)orderItem).getPrice();
+                } else if(itemType.equals("Drink")) {
+                    ((Drink)orderItem).type();
+                    orderSubtotal += ((Drink)orderItem).getPrice();
+                }
+            }
+            order.add("Subtotal: " + orderSubtotal);
+            System.out.println("**********************************************************************");
+            new CreateFile();
+            new WriteToFile(order);
 
         } else {
             System.out.println("Have a nice day then");
         }
+    }
+}
+
+class CreateFile {
+    public CreateFile() {
+        try {
+            File salesData = new File("salesData.txt");
+            if(salesData.createNewFile()) {
+                System.out.println("Receipt file being created...");
+            } else {
+                System.out.println("File already exists");
+            }
+        } catch (IOException e) {
+            System.out.println("Error creating receipt");
+            e.printStackTrace();
+        }
+    }
+}
+
+// class to write to file
+class WriteToFile {
+    public WriteToFile(ArrayList<Object> order) {
+        try {
+            FileWriter fw = new FileWriter("salesData.txt", true);
+            PrintWriter salesWriter = new PrintWriter(fw);
+            for(int i = 0; i < order.size(); i++) {
+                salesWriter.println(order.get(i));
+            }
+            salesWriter.println("******************");
+            salesWriter.close();
+        } catch (IOException e) {
+            System.out.println("Receipt printing error");
+        }
+        System.out.println("Successfully wrote to the file");
     }
 }
