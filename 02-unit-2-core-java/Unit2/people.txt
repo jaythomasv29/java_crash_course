@@ -1,0 +1,13 @@
+People
+Jack	32
+Cass	20
+Belle	23
+Students
+Andy	40	A
+Ed	21	C
+Al	19	B
+Roy	30	C
+Teachers
+Maisy	28	75000
+Ashton	26	85000
+Kayla	29	95000

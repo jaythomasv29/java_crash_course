@@ -27,15 +27,17 @@ public class Student extends Person {
          if(grades.contains(String.valueOf(grade).toUpperCase())) {
              this.grade = grade;
         } else {
-             System.out.println("Grade invalid");
+             System.out.println("Grade invalid:" + grade);
              throw new IllegalArgumentException("Invalid Params for Grade");
          }
     }
 
     @Override
     public String toString() {
-        return "Student{" + "name=" + super.getName() + "age=" + super.getAge() +
-                "grade=" + grade +
+        return "Student{" + "name=" + super.getName() + ", age=" + super.getAge() +
+                ", grade=" + grade +
                 '}';
     }
+
+
 }

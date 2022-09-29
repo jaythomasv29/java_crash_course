@@ -12,8 +12,17 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher{" + "name=" + super.getName() + "age=" + super.getAge() +
-                "salary=" + salary +
+        return "Teacher{" + "name=" + super.getName() + ", age=" + super.getAge() +
+                ", salary=" + salary +
                 '}';
+    }
+
+    // Overload introduce() method
+    public void introduce(String otherName) {
+        if(otherName == null || otherName.isBlank() ) {
+            System.out.println("Hi, I'm Professor " + super.getName());
+        } else {
+            System.out.println("Nice to meet you " + otherName + "! I'm Professor " + super.getName());
+        }
     }
 }
