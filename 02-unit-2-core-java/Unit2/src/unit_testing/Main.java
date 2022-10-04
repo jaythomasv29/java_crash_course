@@ -22,7 +22,13 @@ public class Main {
         System.out.println(filterLowPrices());
 
         Movie m1 = new Movie("Wardogs", "DVD", 10.0);
-
+        Store store = new Store();
+        Movie m2 = new Movie("Rugrats", "DVD", 7.0);
+        store.addMovie(new Movie("Rugrats", "DVD", 7.0));
+        store.addMovie(new Movie("Rugrats", "DVD", 7.0));
+//        store.sellMovie("Bingo");
+        store.rentMovie("Rugrats");
+        store.sellMovie("Rugrats");
     }
 
     public static double getSubtotalAmount() {
@@ -30,13 +36,18 @@ public class Main {
         for(double n : prices) {
             total += n;
         }
-        return total;
+        return round(total);
     }
 
     public static double getTax(double subTotal) {
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.valueOf(df.format(subTotal * (TAX_RATE / 100)));
 
+    }
+
+    public static double round(double amount) {
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        return Double.parseDouble(formatter.format(amount));
     }
 
     public static double getTotal(double subTotal) {

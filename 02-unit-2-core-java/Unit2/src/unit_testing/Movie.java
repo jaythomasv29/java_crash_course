@@ -48,8 +48,9 @@ public class Movie {
         return (this.format.equals("BlueRay")) ? 2.99 : 0.25;
     }
 
-    public boolean setIsAvailable() {
-        return !isAvailable;
+    public boolean setIsAvailable(boolean bool) {
+        this.isAvailable = bool;
+        return this.isAvailable;
     }
 
     public String getName() {
@@ -74,5 +75,19 @@ public class Movie {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Movie)) {
+            return false;
+        }
+         Movie movie = (Movie)obj;
+        return this.name.equals(movie.name) &&
+                this.format.equals(movie.format) &&
+                this.sellingPrice == movie.sellingPrice &&
+                this.isAvailable == movie.isAvailable;
     }
 }

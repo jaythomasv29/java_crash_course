@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/01-unit-1-core-java.iml" filepath="$PROJECT_DIR$/.idea/01-unit-1-core-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/01_MarsWeek_Classes_Control_Flow/01_MarsWeek_Classes_Control_Flow.iml" filepath="$PROJECT_DIR$/01_MarsWeek_Classes_Control_Flow/01_MarsWeek_Classes_Control_Flow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_Unit_Testing_J_Unit/02_Unit_Testing_J_Unit.iml" filepath="$PROJECT_DIR$/02_Unit_Testing_J_Unit/02_Unit_Testing_J_Unit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_OOP_Challenge/03_OOP_Challenge.iml" filepath="$PROJECT_DIR$/03_OOP_Challenge/03_OOP_Challenge.iml" />
+    </modules>
+  </component>
+</project>

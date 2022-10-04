@@ -11,3 +11,5 @@ Teachers
 Maisy	28	75000
 Ashton	26	85000
 Kayla	29	95000
+
+Andy is the oldest at age 40

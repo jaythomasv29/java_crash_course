@@ -8,7 +8,7 @@ class MainTest {
 
     @Test
     public void subtotalIsValid() {
-        assertEquals(20 , Main.getSubtotalAmount());
+        assertEquals(36.7 , Main.getSubtotalAmount());
     }
 
     // Unit test tax field
