@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/grades-styles.css}">
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/shows}">Shows</a>
+    <a th:href="@{/add}">Add Grade</a>
+    <a th:href="@{/grades}">Grades</a>
+    <a th:href="@{/staff}">Staff</a>
+</div>
+<!--
+Thymeleaf string utility methods
+#arrays, #calendars, #dates, #lists, #maps, #numbers, #objects, #sets, #strings
+-->
+    <p th:text="${#strings.contains(name, 'J')}"></p>
+    <p th:text="${name}"></p>
+    <p th:text="${#strings.substring(name, 0, 1)}"></p>
+    <p th:text="${#strings.substring(name, 0, 2)}"></p>
+    <p th:text="${#strings.substring(name, 0, 3)}"></p>
+    <p th:text="${#strings.substring(name, 0, 4)}"></p>
+    <p th:text="${#strings.substring(name, 0, 5)}"></p>
+
+<!-- Link expressions -->
+
+
+</body>
+</html>
