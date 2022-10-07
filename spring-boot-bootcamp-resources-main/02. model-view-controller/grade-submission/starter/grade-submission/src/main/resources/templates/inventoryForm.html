@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>Add / Edit Inventory</title>
+  <link rel="stylesheet" th:href="@{/form-styles.css}">
+</head>
+<body>
+<div class="topnav">
+  <a th:href="@{/}">Home</a>
+  <a th:href="@{/shows}">Shows</a>
+  <a th:href="@{/add}">Add Grade</a>
+  <a th:href="@{/grades}">Grades</a>
+  <a th:href="@{/staff}">Staff</a>
+  <a th:href="@{/inventory}">Inventory</a>
+  <a th:href="@{/addInventory}">Add Inventory</a>
+</div>
+<div class="container">
+  <h2> Inventory Portal </h2>
+  <form method="POST" th:object="${item}" th:action="@{/submitItem}">
+
+    <select th:field="*{category}">
+      <option style="color:blue" value="">Choose Category</option>
+      <!--  Loop through 'categories' model attribute and add option tags from model  -->
+      <option th:each="category : ${categories}" th:text="${category}" th:value="${category}"></option>
+    </select>
+    <input type="text" placeholder="Name" th:field="*{name}">
+    <input type="text" placeholder="0.00" th:field="*{price}">
+    <input type="text" placeholder="0.00" th:field="*{discount}">
+    <input type="date" th:field="*{date}">
+    <input type="hidden" th:field="*{id}">
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

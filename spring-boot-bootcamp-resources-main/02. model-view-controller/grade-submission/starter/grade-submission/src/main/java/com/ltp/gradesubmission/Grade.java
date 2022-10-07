@@ -1,17 +1,32 @@
 package com.ltp.gradesubmission;
+
+import java.util.UUID;
+
 // POJO: plain old java object;
 public class Grade {
+    private String id;
     private String name;
     private String subject;
     private String score;
 
+
+    public Grade() {
+        this.id = UUID.randomUUID().toString();
+    }
+
     public Grade(String name, String subject, String score) {
+        this();
         this.name = name;
         this.subject = subject;
         this.score = score;
     }
 
-    public Grade() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,7 +52,8 @@ public class Grade {
     @Override
     public String toString() {
         return "Grade{" +
-          "name='" + name + '\'' +
+          "id='" + id + '\'' +
+          ", name='" + name + '\'' +
           ", subject='" + subject + '\'' +
           ", score='" + score + '\'' +
           '}';

@@ -12,6 +12,7 @@
       <a th:href="@{/add}">Add Grade</a>
       <a th:href="@{/grades}">Grades</a>
       <a th:href="@{/staff}">Staff</a>
+      <a th:href="@{/inventory}">Inventory</a>
     </div>
 
     <div class= "container">
@@ -45,7 +46,7 @@
           <td th:text="${grade.subject}"></td>
           <td th:text="${grade.score}"></td>
           <td>
-            <a class="update" role="button" th:href="@{/editStudent(name = ${grade.name})}">Update</a>
+            <a class="update" role="button" th:href="@{/editStudent(id = ${grade.id})}">Update</a>
           </td>
         </tr>
       </table>

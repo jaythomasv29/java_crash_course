@@ -93,3 +93,15 @@
       body {
         background: #263238;
       }
+
+      .success {
+        background-color: #04A96C;
+        padding: 30px 40px;
+        color: white;
+      }
+       .danger {
+        background-color: #F44334;
+        padding: 30px 40px;
+        color: white;
+      }
+
