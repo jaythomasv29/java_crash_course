@@ -47,23 +47,20 @@ public class InventoryController {
   @PostMapping("/submitItem")
   public String submitInventoryForm(Item item, RedirectAttributes redirectAttributes) {
     int foundIdx = getItemIdxById(item.getId());
+    String status = Constants.SUCCESS_STATUS;
     if(foundIdx == -1) {
-      redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
       inventory.add(item);
-    } else {
       // if the inventory already exists in the List
+    } else {
       Item foundItem = inventory.get(foundIdx);
       // check new date if is within valid range
-      System.out.println(within5Days(item.getDate(), foundItem.getDate()));
-      if(within5Days(item.getDate(), foundItem.getDate())) {
-        // add success flash attribute to model
-        redirectAttributes.addFlashAttribute("status", Constants.SUCCESS_STATUS);
+      if(within5Days(item.getDate(), foundItem.getDate())){
         inventory.set(foundIdx, item);
       } else {
-        // add success flash attribute to model
-        redirectAttributes.addFlashAttribute("status", Constants.FAILED_STATUS);
+        status = Constants.FAILED_STATUS;
       }
     }
+    redirectAttributes.addFlashAttribute("status", status);
     return "redirect:/inventory";
   }
 
