@@ -2,9 +2,11 @@ package com.ltp.gradesubmission.service;
 
 import com.ltp.gradesubmission.Grade;
 import com.ltp.gradesubmission.repository.GradeRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class GradeService {
   GradeRepository gradeRepository = new GradeRepository();
   public List<Grade> getGrades() {
@@ -31,5 +33,13 @@ public class GradeService {
     return -1;
   }
 
+  public void submitGrade(Grade grade) {
+    int studentIdx = getStudentIdxById(grade.getId());
+    if(studentIdx == -1) {
+      addGrade(grade);
+    } else {
+      updateGrade(studentIdx, grade);
+    }
+  }
 
 }

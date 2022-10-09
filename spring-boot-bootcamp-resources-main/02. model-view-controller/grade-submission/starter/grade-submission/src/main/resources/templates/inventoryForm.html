@@ -20,7 +20,6 @@
   <form method="POST" th:object="${item}" th:action="@{/submitItem}">
     <p style="color: red" th:errors="*{category}"></p>
     <select th:field="*{category}">
-      <option style="color:blue" value="">Choose Category</option>
       <!--  Loop through 'categories' model attribute and add option tags from model  -->
 <!--      <option th:each="category : ${categories}" th:text="${category}" th:value="${category}"></option>-->
       <option style="color:blue" value="">Choose Category</option>

@@ -42,14 +42,7 @@ public class GradeController {
     @PostMapping("/addGrade")
     public String submitForm(@Valid Grade grade, BindingResult result) {
         if(result.hasErrors()) return "form";
-
-        int studentIdx = gradeService.getStudentIdxById(grade.getId());
-        if(studentIdx == -1) {
-
-            gradeService.addGrade(grade);
-        } else {
-            gradeService.updateGrade(studentIdx, grade);
-        }
+        gradeService.submitGrade(grade);
         return "redirect:/grades";
     }
     // handler to map a path for GET requests at a specific endpoint
@@ -63,7 +56,6 @@ public class GradeController {
     @GetMapping("/editStudent")
     public String editStudent(Model model, @RequestParam(required = false) String id) {
         int foundIndex = gradeService.getStudentIdxById(id);
-
 //        System.out.println(getStudentGradeById(name));
         if (foundIndex == -1) {
             model.addAttribute("grade", new Grade());
