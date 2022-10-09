@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><!DOCTYPE HTML>
-    <html>
-    <head>
     <title>Add / Edit Inventory</title>
   <link rel="stylesheet" th:href="@{/form-styles.css}">
 </head>
@@ -21,15 +18,23 @@
 <div class="container">
   <h2> Inventory Portal </h2>
   <form method="POST" th:object="${item}" th:action="@{/submitItem}">
-
+    <p style="color: red" th:errors="*{category}"></p>
     <select th:field="*{category}">
       <option style="color:blue" value="">Choose Category</option>
       <!--  Loop through 'categories' model attribute and add option tags from model  -->
-      <option th:each="category : ${categories}" th:text="${category}" th:value="${category}"></option>
+<!--      <option th:each="category : ${categories}" th:text="${category}" th:value="${category}"></option>-->
+      <option style="color:blue" value="">Choose Category</option>
+      <option style="color:blue" value="Furniture">Furniture</option>
+      <option style="color:blue" value="Office Supplies">Office Supplies</option>
+      <option style="color:blue" value="Technology">Technology</option>
     </select>
+    <p style="color: red" th:errors="*{name}"></p>
     <input type="text" placeholder="Name" th:field="*{name}">
+    <p style="color: red" th:errors="*{price}"></p>
     <input type="text" placeholder="0.00" th:field="*{price}">
+    <p style="color: red" th:errors="*{discount}"></p>
     <input type="text" placeholder="0.00" th:field="*{discount}">
+    <p style="color: red" th:errors="*{date}"></p>
     <input type="date" th:field="*{date}">
     <input type="hidden" th:field="*{id}">
     <br><br>

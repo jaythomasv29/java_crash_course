@@ -2,16 +2,23 @@ package com.ltp.gradesubmission;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.UUID;
 
 public class Item {
   private String id;
+  @NotBlank(message = "Please choose a category")
   private String category;
+  @NotBlank(message = "Name cannot be blank")
   private String name;
+  @Min(value = 0, message = "Price cannot be negative")
   private Double price;
+  @Min(value = 0, message = "Discount cannot be negative")
   private Double discount;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @NotNull(message = "Date cannot be blank")
+  @Past(message = "Date must be in the past")
   private Date date;
 
   public Item() {
