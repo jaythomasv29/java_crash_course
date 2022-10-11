@@ -1,7 +1,5 @@
-package com.ltp.gradesubmission.repository;
+package com.ltp.gradesubmission.Grade;
 
-import com.ltp.gradesubmission.Grade;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -31,5 +29,9 @@ public class GradeRepository {
 
   public void updateGrade(int index, Grade grade){
     studentGrades.set(index, grade);
+  }
+
+  public void deleteGrade(int index) {
+    studentGrades.remove(index);
   }
 }

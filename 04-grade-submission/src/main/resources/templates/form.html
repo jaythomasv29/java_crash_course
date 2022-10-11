@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Add / Edit Grade</title>
+    <link rel="stylesheet" th:href="@{/form-styles.css}">
+  </head>    
+  <body>
+  <div class="topnav">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/shows}">Shows</a>
+    <a th:href="@{/add}">Add Grade</a>
+    <a th:href="@{/grades}">Grades</a>
+    <a th:href="@{/staff}">Staff</a>
+    <a th:href="@{/inventory}">Inventory</a>
+    <a th:href="@{/addInventory}">Add Inventory</a>
+  </div>
+    <div class="container">
+      <h2> Grade Portal </h2>
+      <!--   Model Object to bind fields to bind fields -->
+      <form method="POST" th:object="${grade}" th:action="@{/addGrade}">
+        <!--   Error reporting     -->
+        <p style="color:red" th:errors="*{name}"></p>
+        <input type="text" placeholder="Name" th:field="*{name}">
+        <!--   Error reporting     -->
+        <p style="color:red" th:errors="*{subject}"></p>
+        <input type="text" placeholder="Subject" th:field="*{subject}">
+        <p style="color:red" th:errors="*{score}"></p>
+        <input type="text" placeholder="Score" th:field="*{score}">
+        <input type="hidden" th:field="*{id}">
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>  
+    </div>
+</body>
+</html>

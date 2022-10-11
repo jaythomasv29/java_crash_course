@@ -1,0 +1,57 @@
+<!DOCTYPE>
+<html>
+  <head> 
+    <title>Grades</title>
+    <link rel="stylesheet" th:href="@{/grades-styles.css}">
+  </head>
+  <body>
+
+    <div class="topnav">
+      <a th:href="@{/}">Home</a>
+      <a th:href="@{/shows}">Shows</a>
+      <a th:href="@{/add}">Add Grade</a>
+      <a th:href="@{/grades}">Grades</a>
+      <a th:href="@{/staff}">Staff</a>
+      <a th:href="@{/inventory}">Inventory</a>
+    </div>
+
+    <div class= "container">
+      <h2> Grades </h2>
+      <table id="table"> 
+        <tr>
+          <th>Student</th>
+          <th>Subject</th>
+          <th>Score</th>
+          <th>Action</th>
+        </tr>
+        <!-- selection expression: selects an object from a model
+            (selects from a previously bound object)
+        -->
+<!--        <tr th:object="${grade}">-->
+<!--          <td th:text="*{name}"></td>-->
+<!--          <td th:text="*{subject}"></td>-->
+<!--          <td th:text="*{score}"></td>-->
+<!--        </tr>-->
+
+        <!-- variable expressions to dynamically get data from model-->
+<!--        <tr>-->
+<!--          <td th:text="${grade.name}"></td>-->
+<!--          <td th:text="${grade.subject}"></td>-->
+<!--          <td th:text="${grade.score}"></td>-->
+<!--        </tr>-->
+
+        <!-- Thymeleaf loops - th:each -->
+        <tr th:each="grade: ${grades}">
+          <td th:text="${grade.name}"></td>
+          <td th:text="${grade.subject}"></td>
+          <td th:text="${grade.score}"></td>
+          <td style="display: flex;">
+            <a class="update" role="button" th:href="@{/editStudent(id = ${grade.id})}">Update</a>
+            <a class="delete" role="button" th:href="@{/deleteStudent(id = ${grade.id})}">Delete</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>

@@ -1,9 +1,5 @@
-package com.ltp.gradesubmission.controller;
+package com.ltp.gradesubmission.Grade;
 
-import com.ltp.gradesubmission.Grade;
-import com.ltp.gradesubmission.GradeSubmissionApplication;
-import com.ltp.gradesubmission.repository.GradeRepository;
-import com.ltp.gradesubmission.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +14,7 @@ import javax.validation.Valid;
 // entry point for web requests through GET / POST
 @Controller
 public class GradeController {
+//    @Autowired
     GradeService gradeService;
 //    @Autowired (This line is the same as constructor injection below)
     public GradeController(GradeService gradeService) {
@@ -31,6 +28,14 @@ public class GradeController {
     public String getIndex(Model model) {
         model.addAttribute("name", "James");
         return "index";
+    }
+
+    // handler to map a path for GET requests at a specific endpoint
+    // responds to get requests @ "/grades"
+    @GetMapping("/grades")
+    public String getGrades(Model model) {
+        model.addAttribute("grades", gradeService.getGrades());
+        return "grades";
     }
 
     // Handler that accepts GET request: "/add"
@@ -47,13 +52,7 @@ public class GradeController {
         gradeService.submitGrade(grade);
         return "redirect:/grades";
     }
-    // handler to map a path for GET requests at a specific endpoint
-    // responds to get requests @ "/grades"
-    @GetMapping("/grades")
-    public String getGrades(Model model) {
-        model.addAttribute("grades", gradeService.getGrades());
-        return "grades";
-    }
+
 
     @GetMapping("/editStudent")
     public String editStudent(Model model, @RequestParam(required = false) String id) {
@@ -65,5 +64,12 @@ public class GradeController {
             model.addAttribute("grade", gradeService.getGrade(foundIndex));
         }
             return "form";
+    }
+
+    @GetMapping("/deleteStudent")
+    public String deleteStudent(@RequestParam(required = true) String id) {
+        int foundIndex = gradeService.getStudentIdxById(id);
+        gradeService.deleteGrade(foundIndex);
+        return "redirect:/grades";
     }
 }

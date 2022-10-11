@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>Inventory</title>
+  <link rel="stylesheet" th:href="@{/grades-styles.css}">
+</head>
+<body>
+
+<div class="topnav">
+  <a th:href="@{/}">Home</a>
+  <a th:href="@{/shows}">Shows</a>
+  <a th:href="@{/add}">Add Grade</a>
+  <a th:href="@{/grades}">Grades</a>
+  <a th:href="@{/staff}">Staff</a>
+  <a th:href="@{/inventory}">Inventory</a>
+  <a th:href="@{/addInventory}">Add Inventory</a>
+</div>
+<div th:if="${status} == 'success'" class="alert success">
+  <strong>You successfully submitted the item!</strong>
+</div>
+<div th:if="${status} == 'failed'" class="alert danger">
+  <strong>You failed to submitted the item!</strong>
+</div>
+
+<div class= "container">
+  <h2> Inventory </h2>
+  <table id="table">
+    <tr>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Discount</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+
+
+    <tr th:each="item : ${items}">
+      <td th:text="${item.category}"></td>
+      <td th:text="${item.name}"></td>
+      <td th:text="${#numbers.formatCurrency(item.price)}"></td>
+      <td th:text="${#numbers.formatCurrency(item.discount)}"></td>
+      <td type="date" th:text="${#dates.format(item.date, 'yyyy-MM-dd')}"></td>
+      <td><a class="update" role="button" th:href="@{/editInventory(id = ${item.id})}">Update</a></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

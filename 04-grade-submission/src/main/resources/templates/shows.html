@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shows</title>
+  <link rel="stylesheet" th:href="@{/grades-styles.css}">
+  <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a th:href="@{/}">Home</a>
+  <a th:href="@{/shows}">Shows</a>
+  <a th:href="@{/add}">Add Grade</a>
+  <a th:href="@{/grades}">Grades</a>
+  <a th:href="@{/staff}">Staff</a>
+  <a th:href="@{/inventory}">Inventory</a>
+  <a th:href="@{/addInventory}">Add Inventory</a>
+</div>
+
+<table>
+    <tr>
+      <th>Title</th>
+      <th>Episode</th>
+      <th>Rating</th>
+      <th>Recommended?</th>
+    </tr>
+    <tr>
+      <td th:text="${s1.title}"></td>
+      <td th:text="${s1.episode}"></td>
+      <td th:text="${s1.rating}"></td>
+      <td th:text="${s1.rating > 6.0} ? 'Yes' : 'No'"></td>
+    </tr>
+    <tr>
+      <td th:text="${s2.title}"></td>
+      <td th:text="${s2.episode}"></td>
+      <td th:text="${s2.rating}"></td>
+      <td th:text="${s2.rating > 6.0} ? 'Yes' : 'No'"></td>
+    </tr>
+    <tr th:object="${s3}">
+      <td th:text="*{title}"></td>
+      <td th:text="*{episode}"></td>
+      <td th:text="*{rating}"></td>
+      <td th:text="*{rating > 6.0} ? 'Yes' : 'No'"></td>
+    </tr>
+    <tr th:object="${s4}">
+      <td th:text="*{title}"></td>
+      <td th:text="*{episode}"></td>
+      <td th:text="*{rating}"></td>
+      <td th:text="*{rating > 6.0} ? 'Yes' : 'No'"></td>
+    </tr>
+    <tr th:object="${s5}">
+      <td th:text="*{title}"></td>
+      <td th:text="*{episode}"></td>
+      <td th:text="*{rating}"></td>
+      <td th:text="*{rating > 6.0} ? 'Yes' : 'No'"></td>
+    </tr>
+</table>
+<!--Useful thymeleaf expressions
+  - variable expression
+  - selection expression
+  - if condition
+  - else condition
+  - switch statement
+  - ternary
+-->
+<!--Conditional th:if -->
+    <p th:if="${s5.rating > 5.0}">Must watch!</p>
+    <p th:unless="${s5.rating > 8}">Rotten movie</p>
+    <p th:text="${s5.rating > 8} ? 'Ratings were better than average' : 'Poor ratings'"></p>
+    <div th:switch="${furniture}">
+      <p th:case="'robot'">robot</p>
+      <p th:case="'cyborg'">cyborg</p>
+      <p th:case="*">no robot here!</p>
+    </div>
+  </body>
+</html>
