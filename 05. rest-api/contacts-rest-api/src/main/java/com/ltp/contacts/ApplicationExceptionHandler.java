@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @ControllerAdvice
-public class ApplilcationExceptionHandler extends ResponseEntityExceptionHandler {
+public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(ContactNotFoundException.class)
   public ResponseEntity<Object> handleContactNotFoundException(ContactNotFoundException e) {

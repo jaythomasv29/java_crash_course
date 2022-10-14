@@ -15,9 +15,7 @@ public class ContactRepository {
       new Contact("James", "4087477721"),
       new Contact("Jantira", "4087477721"),
       new Contact("Jojo", "4087477721")
-    )
-
-    );
+    ));
 
     public List<Contact> getContacts() {
         return contacts;

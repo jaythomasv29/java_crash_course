@@ -7,12 +7,12 @@ import java.util.NoSuchElementException;
 
 public interface ContactService {
 
-  Contact getContactById(String id) throws NoSuchElementException;
+  Contact getContactById(String id);
   List<Contact> getContacts();
   void saveContact(Contact contact);
 
-  void updateContact(String id, Contact contact) throws NoSuchElementException;
+  void updateContact(String id, Contact contact);
 
-  void deleteContact(String id) throws NoSuchElementException;
+  void deleteContact(String id) ;
     
 }
