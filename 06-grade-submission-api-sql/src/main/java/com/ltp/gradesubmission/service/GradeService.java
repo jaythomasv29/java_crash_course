@@ -3,6 +3,8 @@ package com.ltp.gradesubmission.service;
 import java.util.List;
 
 import com.ltp.gradesubmission.entity.Grade;
+import org.springframework.stereotype.Service;
+
 
 public interface GradeService {
     Grade getGrade(Long studentId, Long courseId);

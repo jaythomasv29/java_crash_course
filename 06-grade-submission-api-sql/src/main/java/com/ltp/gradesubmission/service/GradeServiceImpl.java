@@ -3,17 +3,32 @@ package com.ltp.gradesubmission.service;
 import java.util.List;
 
 import com.ltp.gradesubmission.entity.Grade;
-
+import com.ltp.gradesubmission.entity.Student;
+import com.ltp.gradesubmission.repository.GradeRepository;
+import com.ltp.gradesubmission.repository.StudentRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+//@AllArgsConstructor -> Same as autowired to inject gradeRepository, and studentRepository
+@Service
 public class GradeServiceImpl implements GradeService {
+
+    @Autowired
+    GradeRepository gradeRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
     
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        return null;
+        return gradeRepository.findByStudentId(studentId);
     }
 
     @Override
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
-        return null;
+        Student student = studentRepository.findById(studentId).get();
+        grade.setStudent(student);
+        return gradeRepository.save(grade);
     }
 
     @Override
@@ -23,12 +38,11 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public void deleteGrade(Long studentId, Long courseId) {
-        
     }
 
     @Override
     public List<Grade> getStudentGrades(Long studentId) {
-        return null;
+        return gradeRepository.findAllByStudentId(studentId);
     }
 
     @Override
@@ -38,7 +52,8 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public List<Grade> getAllGrades() {
-        return null;
+        return (List<Grade>) gradeRepository.findAll();
+
     }
 
 }
