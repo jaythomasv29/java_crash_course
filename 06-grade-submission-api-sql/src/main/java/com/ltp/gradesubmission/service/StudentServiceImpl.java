@@ -2,9 +2,13 @@ package com.ltp.gradesubmission.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import com.ltp.gradesubmission.entity.Course;
 import com.ltp.gradesubmission.entity.Grade;
 import com.ltp.gradesubmission.entity.Student;
+import com.ltp.gradesubmission.exception.CourseNotFoundException;
+import com.ltp.gradesubmission.exception.StudentNotFoundException;
 import com.ltp.gradesubmission.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +21,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudent(Long id) {
-        printGrades(studentRepository.findById(id).get());
-        return studentRepository.findById(id).orElse(null);
+        Optional<Student> student = studentRepository.findById(id);
+        return unwrapStudent(student, id);
     }
 
     @Override
@@ -34,6 +38,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Set<Course> getStudentCourses(Long studentId) {
+        Student student = getStudent(studentId);
+        return student.getCourses();
+    }
+
+    @Override
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
@@ -43,10 +53,9 @@ public class StudentServiceImpl implements StudentService {
         return (List<Student>) studentRepository.findAll();
     }
 
-    void printGrades(Student student) {
-        for(Grade grade : student.getGrades()) {
-            System.out.println(grade.getScore());
-        }
+    static Student unwrapStudent(Optional<Student> studentEntity, Long id) {
+        if(studentEntity.isPresent()) return studentEntity.get();
+        else throw new StudentNotFoundException(id);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ltp.gradesubmission.entity;
 
+import com.ltp.gradesubmission.validation.Score;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "grades")
+@Table(name = "grades", uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"student_id", "course_id"})
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,12 +22,18 @@ public class Grade {
     @Column(name = "id")  // column name
     private Long id;
 
+    @Column(name = "score", nullable = false)  // column name, not_null
+    @Score(message = "Score must be a letter grade")
+    private String score;
+
     @ManyToOne(optional = false) // many grades will be associated to one student
     @JoinColumn(name = "student_id", referencedColumnName = "id")   // foreign key
     private Student student;
 
-    @Column(name = "score", nullable = false)  // column name, not_null
-    private String score;
+
+    @ManyToOne(optional = false) // many grades will be associated to one course
+    @JoinColumn(name = "course_id", referencedColumnName = "id")   // foreign key
+    private Course course;
 
 //    public Long getId() {
 //        return this.id;
