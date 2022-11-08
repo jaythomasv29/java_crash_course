@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -25,12 +27,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public User loginUser(UserDto userDto) {
     Optional<User> wrappedUser = userRepository.findByUsername(userDto.getUsername());
     // if user is present, then check password
     User user = unwrapUser(wrappedUser);
       if(passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
-        // successful validation returns the appropriate user
+        // successful validation returns the cookie user
         return user;
     }
       throw new RuntimeException("authentication failed");

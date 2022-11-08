@@ -1,6 +1,7 @@
 package com.notely.noteApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.notely.noteApp.dtos.NoteDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,11 +24,13 @@ public class Note {
   @Column(columnDefinition = "text")
   private String body;
 
-  @ManyToOne
-  @JsonBackReference
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  @JsonIgnore
   private User user;
 
   public Note(NoteDto noteDto) {
-
+    this.setId(noteDto.getId());
+    this.setBody(noteDto.getBody());
   }
 }

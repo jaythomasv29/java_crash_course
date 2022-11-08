@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -29,7 +31,7 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<User> loginUser(@RequestBody @Valid UserDto userDto) {
+  public ResponseEntity<User> loginUser(@RequestBody @Valid UserDto userDto, HttpServletResponse response) {
     return new ResponseEntity<>(userService.loginUser(userDto), HttpStatus.OK);
   }
 

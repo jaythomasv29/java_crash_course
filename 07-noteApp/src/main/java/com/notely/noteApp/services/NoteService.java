@@ -6,13 +6,14 @@ import com.notely.noteApp.entities.Note;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface NoteService {
 
 
   Note getNoteById(Long noteId);
 
-  List<Note> getNotesByUserId(Long userId);
+  List<NoteDto> getNotesByUserId(Long userId);
 
   @Transactional
   Note addNote(NoteDto noteDto, Long userId);

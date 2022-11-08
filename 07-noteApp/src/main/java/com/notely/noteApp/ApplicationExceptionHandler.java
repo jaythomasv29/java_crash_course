@@ -1,6 +1,7 @@
 package com.notely.noteApp;
 
 import com.notely.noteApp.exceptions.ErrorResponse;
+import com.notely.noteApp.exceptions.NoteNotFoundException;
 import com.notely.noteApp.exceptions.UserNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -21,7 +22,7 @@ import java.util.List;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler({UserNotFoundException.class})
+  @ExceptionHandler({UserNotFoundException.class, NoteNotFoundException.class})
     public ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex) {
       return new ResponseEntity<>(new ErrorResponse(Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
   }
